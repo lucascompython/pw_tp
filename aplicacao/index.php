@@ -60,7 +60,7 @@ date_default_timezone_set("Europe/Lisbon");
                         <div class="col-md-12 mb-4">
                             <div class="h-100 p-5 text-bg-dark rounded-3">
                                 <h2>Perfil</h2>
-                                <p>Este painel é utilizado para destacar que utilizadores REGISTADOS podem alterar o próprio perfil. Aqui você poderá editar e cancelar a sua assinatura no sistema. <strong class="text-warning">E se estiver vendo este parágrafo, significa que você precisa completar o seu perfil.</strong></p>
+                                <p>Este painel é utilizado para destacar que utilizadores REGISTADOS podem alterar o próprio perfil. Aqui você poderá editar e cancelar a sua assinatura no sistema.</p>
                                 <a href="/aplicacao/perfil.php"><button class="btn btn-outline-light px-5 w-100" type="button">Editar</button></a>
                             </div>
                         </div>
