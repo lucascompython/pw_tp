@@ -28,11 +28,11 @@ include_once __DIR__ . '/templates/cabecalho.php';
       <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post">
         <h1 class="h3 mb-3 fw-normal">CRUD PHP</h1>
         <div class="form-floating mb-2">
-          <input type="email" class="form-control" id="Email" placeholder="Email" name="email" maxlength="255" value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>">
+          <input type="email" class="form-control" id="Email" placeholder="Email" name="email" maxlength="255" value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" required>
           <label for="Email">Endereço de Email</label>
         </div>
         <div class="form-floating mb-2">
-          <input type="password" class="form-control" id="palavra_passe" placeholder="Palavra Passe" name="palavra_passe" maxlength="255" value="<?= isset($_REQUEST['palavra_passe']) ? $_REQUEST['palavra_passe'] : null ?>" >
+          <input type="password" class="form-control" id="palavra_passe" placeholder="Palavra Passe" name="palavra_passe" maxlength="255" value="<?= isset($_REQUEST['palavra_passe']) ? $_REQUEST['palavra_passe'] : null ?>" required>
           <label for="palavra_passe">Palavra Passe</label>
         </div>
         <div class="checkbox mb-3">
