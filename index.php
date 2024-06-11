@@ -34,12 +34,10 @@ require_once __DIR__ . '/src/middleware/middleware-nao-autenticado.php';
             <div class="p-5 mb-4 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-5">
                     <h1 class="display-5 fw-bold">Bem vindo!</h1>
-                    <p class="col-md-8 fs-4">Para ter acesso a informações exclusivas desse sistema, que foi
-                        desenvolvido
-                        com Bootstrap e PHP, você terá que fazer seu login ou registro.</p>
+                    <p class="col-md-8 fs-4">Inicie sessão para ter acesso a informação exclusiva!</p>
                     <div class="d-flex justify-content">
-                        <a href="/aplicacao/login.php"><button class="btn btn-success btn-lg px-5 me-2">Login</button></a>
-                        <a href="/aplicacao/registo.php"><button class="btn btn-info btn-lg px-4">Registo</button></a>
+                        <a href="/aplicacao/login.php" class="flex-fill mx-2"><button class="btn btn-success btn-lg  w-100">Login</button></a>
+                        <a href="/aplicacao/registo.php" class="flex-fill mx-2"><button class="btn btn-info btn-lg w-100">Registo</button></a>
                     </div>
                 </div>
             </div>
