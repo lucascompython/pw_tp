@@ -34,7 +34,7 @@ require_once __DIR__ . '/src/middleware/middleware-nao-autenticado.php';
             </div>
 
             <footer class="pt-3 mt-4 text-body-secondary border-top">
-                IPVC ESTG - Desenvolvimento WEB | Professor Wenderson Wanzeller &copy; - 2022-2023
+                IPVC ESTG - Desenvolvimento WEB | Lucas de Linhares &copy; - 2022-2023
             </footer>
         </div>
     </main>
