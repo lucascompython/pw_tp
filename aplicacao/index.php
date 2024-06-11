@@ -37,8 +37,8 @@ date_default_timezone_set("Europe/Lisbon");
 
             <div class="row">
                 <div class="col-md-4">
-                    <div class="p-3 mb-4 bg-body-tertiary rounded-3 position-relative">
-                        <div class="container-fluid">
+                    <div class="p-3 mb-4 bg-body-tertiary rounded-3 position-relative h-100 d-flex flex-column">
+                        <div class="container-fluid flex-grow-1">
                             <div>
                                 <div class="d-flex align-items-center justify-content-between border-bottom mb-5">
                                     <h3 class="fw-bold">Olá <?= $utilizador['nome'] ?? null ?> !</h3>
@@ -48,12 +48,10 @@ date_default_timezone_set("Europe/Lisbon");
                                 <p class="fs-5">Hora Atual em Portugal: <?= date('H:i:s') ?></p>
                                 <p class="fs-5">Hora Atual em Espanha: <?= date('H:i:s', strtotime('+1 hour')) ?></p>
                             </div>
-                            <div class="d-flex justify-content">
-                                <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post" class="flex-fill mt-5">
-                                    <button class="btn btn-danger btn-lg px-4 w-100" type="submit" name="utilizador" value="logout">Logout</button>
-                                </form>
-                            </div>
                         </div>
+                        <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post">
+                            <button class="btn btn-danger btn-lg px-4 w-100" type="submit" name="utilizador" value="logout">Logout</button>
+                        </form>
                     </div>
                 </div>
 
