@@ -1,4 +1,4 @@
-    <footer class="p-3 bg-info text-white">
+    <footer class="p-3 bg-success text-white fixed-bottom text-center">
       <article>IPVC ESTG - Desenvolvimento WEB | Lucas de Linhares &copy; - 2023-2024</article>
     </footer>
     </div>

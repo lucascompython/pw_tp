@@ -14,15 +14,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
 ?>
 
 <main class="bg-light">
-  <section class="py-4">
-    <div class="d-flex justify-content">
-      <a href="/admin/utilizador.php"><button class="btn btn-success px-4 me-2">Criar Utilizador</button></a>
-      <a href="/aplicacao/"><button class="btn btn-info px-2 me-2">Sair Administração</button></a>
-      <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post">
-        <button class="btn btn-danger px-4" type="submit" name="utilizador" value="logout">Fazer Logout</button>
-      </form>
-    </div>
-  </section>
+
   <section>
     <?php
     # MOSTRA AS MENSAGENS DE SUCESSO E DE ERRO VINDA DO CONTROLADOR-UTILIZADOR
@@ -43,7 +35,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
     ?>
   </section>
   <section>
-    <div class="table-responsive">
+    <div class="table-responsive mt-5">
       <table class="table">
         <thead class="table-secondary">
           <tr>
@@ -99,6 +91,21 @@ require_once __DIR__ . '/templates/cabecalho.php';
           ?>
         </tbody>
       </table>
+    </div>
+  </section>
+  <section class="py-4">
+    <div class="d-flex w-100 justify-content-between">
+      <a href="/admin/utilizador.php" class="flex-fill mx-2">
+        <button class="btn btn-success w-100">Criar Utilizador</button>
+      </a>
+      <a href="/aplicacao/" class="flex-fill mx-2">
+        <button class="btn btn-info w-100">Sair Administração</button>
+      </a>
+
+      <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post" class="flex-fill mx-2">
+        <button class="btn btn-danger w-100" type="submit" name="utilizador" value="logout">Fazer Logout</button>
+      </form>
+
     </div>
   </section>
 </main>

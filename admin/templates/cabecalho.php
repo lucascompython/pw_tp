@@ -10,8 +10,8 @@
 </head>
 
 <body class="container bg-light">
-  <div class="pt-1 ">
-    <div class="p-5 mb-2 bg-info text-white">
+  <div>
+    <div class="p-4 mb-2 bg-success text-white">
       <h1>Registo de Utilizadores</h1>
       <p>CRUD | Front-end Bootstrap | Back-end PHP</p>
     </div>
