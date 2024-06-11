@@ -63,7 +63,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
               <td>
                 <div class="d-flex justify-content">
                   <a href="/src/controlador/admin/controlar-utilizador.php?<?= 'utilizador=atualizar&id=' . $utilizador['id'] ?>"><button type="button" class="btn btn-primary me-2">Atualizar</button></a>
-                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#deletar<?= $utilizador['id'] ?>">Deletar</button>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletar<?= $utilizador['id'] ?>">Deletar</button>
                 </div>
               </td>
             </tr>
@@ -99,11 +99,11 @@ require_once __DIR__ . '/templates/cabecalho.php';
         <button class="btn btn-success w-100">Criar Utilizador</button>
       </a>
       <a href="/aplicacao/" class="flex-fill mx-2">
-        <button class="btn btn-info w-100">Sair Administração</button>
+        <button class="btn btn-dark w-100">Sair Administração</button>
       </a>
 
       <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post" class="flex-fill mx-2">
-        <button class="btn btn-danger w-100" type="submit" name="utilizador" value="logout">Fazer Logout</button>
+        <button class="btn btn-warning w-100" type="submit" name="utilizador" value="logout">Fazer Logout</button>
       </form>
 
     </div>
