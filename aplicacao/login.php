@@ -55,7 +55,7 @@ include_once __DIR__ . '/templates/cabecalho.php';
             <label for="palavra_passe">Palavra Passe</label>
           </div>
           <div class="checkbox mb-3">
-            <label><input type="checkbox" value="lembra-me">Lembrar-me</label>
+            <label><input type="checkbox" value="lembra-me"> Lembrar-me</label>
           </div>
           <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="utilizador" value="login">Entrar</button>
         </form>
