@@ -17,9 +17,6 @@ include_once __DIR__ . '/templates/cabecalho.php';
 <body>
     <main>
         <div class="container py-4">
-            <!-- <header class="pb-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo-estg.svg" alt="ESTG" class="mw-100"></a>
-            </header> -->
             <header class="pb-3 mb-4 border-bottom d-flex justify-content-between">
                 <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
                 <a href="https://pauloministro.com">
