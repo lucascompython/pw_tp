@@ -1,4 +1,10 @@
 <?php
+
+if (php_sapi_name() !== 'cli') {
+    header("Location: /");
+    exit;
+}
+
 # TRATA-SE DE UMA FORMA RÁPIDA PARA REINICIAR O BANCO DE DADOS EM AMBIENTE DE DESENVOLVIMENTO
 # ESTE FICHEIRO NÃO DEVE ESTAR DISPONÍVEL EM PRODUÇÃO
 
@@ -30,15 +36,15 @@ echo 'Tabela utilizadores criada!' . PHP_EOL;
 
 # ABAIXO UM ARRAY SIMULANDO A DADOS DE UM UTILIZADOR 
 $utilizador = [
-    'nome' => 'Wenderson',
-    'apelido' => 'Wanzeller',
-    'nif' => '294733167',
-    'telemovel' => '917315200',
-    'email' => 'wendersonwanzeller@estg.ipvc.pt',
+    'nome' => 'Lucas',
+    'apelido' => 'Linhares',
+    'nif' => '999999990',
+    'telemovel' => '969969969',
+    'email' => 'lucas@email.com',
     'foto' => null,
     'administrador' => true,
     'dono' => true,
-    'palavra_passe' => '123456'
+    'palavra_passe' => '123123'
 ];
 
 # CRIPTOGRAFA PALAVRA PASSE
