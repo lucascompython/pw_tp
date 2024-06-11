@@ -17,8 +17,16 @@ require_once __DIR__ . '/src/middleware/middleware-nao-autenticado.php';
 <body>
     <main>
         <div class="container py-4">
-            <header class="pb-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo-estg.svg" alt="ESTG" class="mw-100"></a>
+            <header class="pb-3 mb-4 border-bottom d-flex justify-content-between">
+                <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
+                <div class="d-flex justify-content-between p-2 align-items-center">
+                    <a href="https://instagram.com" target="_blank">
+                        <img src="/recursos/imagens/instagram.png" alt="Instagram" class="img-fluid mw-100 p-2" style="height: 50px;">
+                    </a>
+                    <a href="https://facebook.com" target="_blank">
+                        <img src="/recursos/imagens/facebook.png" alt="Facebook" class="img-fluid mw-100 p-2" style="height: 50px;">
+                    </a>
+                </div>
             </header>
             <div class="p-5 mb-4 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-5">
@@ -33,8 +41,8 @@ require_once __DIR__ . '/src/middleware/middleware-nao-autenticado.php';
                 </div>
             </div>
 
-            <footer class="pt-3 mt-4 text-body-secondary border-top">
-                IPVC ESTG - Desenvolvimento WEB | Lucas de Linhares &copy; - 2022-2023
+            <footer class="pt-2 mt-4 text-body-secondary border-top fixed-bottom text-center bg-light pb-2">
+                IPVC ESTG - Desenvolvimento WEB | Lucas de Linhares &copy; - 2023-2024
             </footer>
         </div>
     </main>
