@@ -32,11 +32,15 @@ include_once __DIR__ . '/templates/cabecalho.php';
                     </a>
                 </div>
             </header>
-            <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+
+            <div class="p-5 mb-4 bg-body-tertiary rounded-3 position-relative">
+                <img src="<?= !empty($utilizador['foto']) ? '/recursos/imagens/uploads/' . $utilizador['foto'] : '/recursos/imagens/default_pfp.svg' ?>" alt="Profile Picture" class="m-3 rounded-circle card-img-top position-absolute top-0 end-0" style="width: 100px; height: 100px;">
+
                 <div class="container-fluid py-5">
-                    <h1 class="display-5 fw-bold">Olá <?= $utilizador['nome'] ?? null ?> !</h1>
-                    <p class="col-md-8 fs-4">Agora que está logado no sistema, você tem acesso a informações
-                        exclusivas.</p>
+                    <div>
+                        <h1 class="display-5 fw-bold">Olá <?= $utilizador['nome'] ?? null ?> !</h1>
+                        <p class="col-md-8 fs-4">Agora que está logado no sistema, você tem acesso a informações exclusivas.</p>
+                    </div>
                     <div class="d-flex justify-content">
                         <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post">
                             <button class="btn btn-danger btn-lg px-4" type="submit" name="utilizador" value="logout">Logout</button>
