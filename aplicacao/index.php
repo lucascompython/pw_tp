@@ -61,7 +61,7 @@ date_default_timezone_set("Europe/Lisbon");
                             <div class="h-100 p-5 text-bg-dark rounded-3">
                                 <h2>Perfil</h2>
                                 <p>Este painel é utilizado para destacar que utilizadores REGISTADOS podem alterar o próprio perfil. Aqui você poderá editar e cancelar a sua assinatura no sistema. <strong class="text-warning">E se estiver vendo este parágrafo, significa que você precisa completar o seu perfil.</strong></p>
-                                <a href="/aplicacao/perfil.php"><button class="btn btn-outline-light px-5" type="button">Editar</button></a>
+                                <a href="/aplicacao/perfil.php"><button class="btn btn-outline-light px-5 w-100" type="button">Editar</button></a>
                             </div>
                         </div>
 
@@ -72,7 +72,7 @@ date_default_timezone_set("Europe/Lisbon");
                 <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                     <h2>Painel de Administração</h2>
                     <p>Este painel é exclusivo para utilizadores REGISTADOS e que tenham o perfil de ADMINISTRADOR. Aqui você poderá criar, alterar, apagar, promover e despromover outros utilizadores a administradores do sistema.</p>
-                    <a href="/admin/"><button class="btn btn-outline-success" type="button">Administração</button></a>
+                    <a href="/admin/"><button class="btn btn-outline-success w-100" type="button">Administração</button></a>
                 </div>
             </div>';
                         }
