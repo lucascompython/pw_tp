@@ -99,12 +99,8 @@ require_once __DIR__ . '/templates/cabecalho.php';
         <button class="btn btn-success w-100">Criar Utilizador</button>
       </a>
       <a href="/aplicacao/" class="flex-fill mx-2">
-        <button class="btn btn-dark w-100">Sair Administração</button>
+        <button class="btn btn-dark w-100">Voltar</button>
       </a>
-
-      <form action="/src/controlador/aplicacao/controlar-autenticacao.php" method="post" class="flex-fill mx-2">
-        <button class="btn btn-warning w-100" type="submit" name="utilizador" value="logout">Fazer Logout</button>
-      </form>
 
     </div>
   </section>

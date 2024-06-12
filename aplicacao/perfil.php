@@ -13,18 +13,29 @@ $utilizador = utilizador();
 ?>
 
 <body class="container bg-light">
-  <div class="pt-1 ">
-    <div class="p-5 mb-2 bg-info text-white">
+  <div class="conatiner py-3">
+    <header class="pb-3 mb-1 border-bottom d-flex justify-content-between">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
+      <a href="https://pauloministro.com">
+        <img src="/recursos/imagens/website.png" alt="Site Paulo Ministro" class="img-fluid mw-100" style="height: 100px;">
+      </a>
+      <div class="d-flex justify-content-between p-2 align-items-center">
+        <a href="https://instagram.com" target="_blank">
+          <img src="/recursos/imagens/instagram.png" alt="Instagram" class="img-fluid mw-100 p-2" style="height: 50px;">
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <img src="/recursos/imagens/facebook.png" alt="Facebook" class="img-fluid mw-100 p-2" style="height: 50px;">
+        </a>
+      </div>
+    </header>
+  </div>
+
+
+  <div class="pt-1">
+    <div class="p-3 mb-2 text-white text-center bg-dark rounded">
       <h1>Registo de Utilizadores</h1>
-      <p>CRUD | Front-end Bootstrap | Back-end PHP</p>
     </div>
     <main class="bg-light">
-      <section class="py-4">
-        <div class="d-flex justify-content">
-          <a href="/aplicacao/"><button type="button" class="btn btn-secondary px-5 me-2">Voltar</button></a>
-          <a href="/aplicacao/palavra-passe.php"><button class="btn btn-warning px-2 me-2">Alterar Palavra Passe</button></a>
-        </div>
-      </section>
       <section>
         <?php
         # MOSTRA AS MENSAGENS DE SUCESSO E DE ERRO VINDA DO CONTROLADOR-UTILIZADOR
@@ -70,8 +81,17 @@ $utilizador = utilizador();
             <label class="input-group-text" for="inputGroupFile01">Foto de Perfil</label>
             <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto" />
           </div>
-          <div class="d-grid col-4 mx-auto">
-            <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="utilizador" value="perfil">Alterar</button>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Palavra Passe</span>
+            <input type="password" class="form-control" name="palavra_passe" maxlength="255">
+          </div>
+
+          <div class="d-flex justify-content-between w-100">
+            <div class="flex-fill mx-2">
+              <button class="w-100 btn btn-success" type="submit" name="utilizador" value="perfil">Alterar</button>
+            </div>
+            <a href="/aplicacao/" class="flex-fill mx-2"><button type="button" class="btn btn-secondary w-100">Voltar</button></a>
           </div>
         </form>
       </section>
