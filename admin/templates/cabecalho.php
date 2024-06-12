@@ -11,7 +11,24 @@
 
 <body class="container bg-light">
   <div>
-    <div class="p-4 mb-2 bg-success text-white">
+
+    <div class="conatiner py-4">
+
+      <header class="pb-3 mb-4 border-bottom d-flex justify-content-between">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
+        <a href="https://pauloministro.com">
+          <img src="/recursos/imagens/website.png" alt="Site Paulo Ministro" class="img-fluid mw-100" style="height: 100px;">
+        </a>
+        <div class="d-flex justify-content-between p-2 align-items-center">
+          <a href="https://instagram.com" target="_blank">
+            <img src="/recursos/imagens/instagram.png" alt="Instagram" class="img-fluid mw-100 p-2" style="height: 50px;">
+          </a>
+          <a href="https://facebook.com" target="_blank">
+            <img src="/recursos/imagens/facebook.png" alt="Facebook" class="img-fluid mw-100 p-2" style="height: 50px;">
+          </a>
+        </div>
+      </header>
+    </div>
+    <div class="p-3 mb-2 text-white text-center bg-dark">
       <h1>Registo de Utilizadores</h1>
-      <p>CRUD | Front-end Bootstrap | Back-end PHP</p>
     </div>
