@@ -16,7 +16,7 @@ require_once __DIR__ . '/src/middleware/middleware-nao-autenticado.php';
 
 <body>
     <main>
-        <div class="container py-4">
+        <div class="container py-3">
             <header class="pb-3 mb-4 border-bottom d-flex justify-content-between">
                 <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
                 <a href="https://pauloministro.com">

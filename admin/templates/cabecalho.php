@@ -12,9 +12,9 @@
 <body class="container bg-light">
   <div>
 
-    <div class="conatiner py-4">
+    <div class="conatiner py-3">
 
-      <header class="pb-3 mb-4 border-bottom d-flex justify-content-between">
+      <header class="pb-3 mb-1 border-bottom d-flex justify-content-between">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none"><img src="/recursos/imagens/logo_paulo.png" alt="Logo Paulo Ministro" class="img-fluid mw-100" style="height: 100px;"></a>
         <a href="https://pauloministro.com">
           <img src="/recursos/imagens/website.png" alt="Site Paulo Ministro" class="img-fluid mw-100" style="height: 100px;">
@@ -29,6 +29,6 @@
         </div>
       </header>
     </div>
-    <div class="p-3 mb-2 text-white text-center bg-dark">
+    <div class="p-3 mb-2 text-white text-center bg-dark rounded">
       <h1>Registo de Utilizadores</h1>
     </div>

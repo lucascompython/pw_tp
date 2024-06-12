@@ -11,9 +11,6 @@ require_once __DIR__ . '/templates/cabecalho.php';
 ?>
 
 <main class="bg-light">
-  <section class="py-4">
-    <a href="/admin/"><button type="button" class="btn btn-secondary px-5">Voltar</button></a>
-  </section>
   <section>
     <?php
     # MOSTRA AS MENSAGENS DE SUCESSO E DE ERRO VINDA DO CONTROLADOR-UTILIZADOR
@@ -69,10 +66,18 @@ require_once __DIR__ . '/templates/cabecalho.php';
           <label class="form-check-label" for="flexSwitchCheckChecked">Administrador</label>
         </div>
       </div>
-      <div class="d-grid col-4 mx-auto">
-        <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
-        <input type="hidden" name="foto" value="<?= isset($_REQUEST['foto']) ? $_REQUEST['foto'] : null ?>">
-        <button type="submit" class="btn btn-success" name="utilizador" <?= isset($_REQUEST['acao']) && $_REQUEST['acao'] == 'atualizar' ? 'value="atualizar"' : 'value="criar"' ?>>Enviar</button>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="flex-fill mx-2">
+          <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
+          <input type="hidden" name="foto" value="<?= isset($_REQUEST['foto']) ? $_REQUEST['foto'] : null ?>">
+          <button type="submit" class="btn btn-success w-100" name="utilizador" <?= isset($_REQUEST['acao']) && $_REQUEST['acao'] == 'atualizar' ? 'value="atualizar"' : 'value="criar"' ?>>Enviar</button>
+        </div>
+        <section class="flex-fill mx-2">
+          <a href="/admin/">
+            <button type="button" class="btn btn-secondary w-100">Voltar</button>
+          </a>
+        </section>
       </div>
     </form>
   </section>
