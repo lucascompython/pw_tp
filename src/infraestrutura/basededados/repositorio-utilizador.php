@@ -212,11 +212,15 @@ function atualizarPalavraPasse($utilizador)
  */
 function deletarUtilizador($id)
 {
+
+    $GLOBALS['pdo']->exec("INSERT INTO utilizadores_banidos (id, email) SELECT id, email FROM utilizadores WHERE id = $id;");
+
     # PREPARA A CONSULTA
     $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM utilizadores WHERE id = ?;');
 
     # REALIZA O BIND
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
+
 
     # EXECUTA A CONSULTA E RETORNA OS DADOS
     return $PDOStatement->execute();
@@ -261,4 +265,21 @@ function registarUtilizador($utilizador)
     }
 
     return false;
+}
+
+# VERIFICAR SE O UTILIZADOR JA FOI BANIDO RETORNAR BOOL
+
+function verificarUtilizadorBanido($email)
+{
+    # PREPARA A QUERY
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores_banidos WHERE email = ? LIMIT 1;');
+
+    # FAZ O BIND
+    $PDOStatement->bindValue(1, $email);
+
+    # EXECUTA A CONSULTA
+    $PDOStatement->execute();
+
+    # RETORNA OS DADOS
+    return $PDOStatement->fetch();
 }

@@ -44,6 +44,21 @@ function registo($requisicao)
         header('location: /../aplicacao/registo.php' . $params);
     } else {
 
+
+        # VERIFICAR SE O UTIlizADOR JA FOI BANIDO
+        if (verificarUtilizadorBanido($dados["email"])) {
+            # DEFINE MENSAGEM DE ERRO
+            $_SESSION['erros'] = ['Utilizador banido. Por favor, contacte o administrador.'];
+
+            # REDIRECIONA UTILIZADOR PARA PÁGINA DE LOGIN COM MENSAGEM DE ERRO
+            header('location: /../../aplicacao/registo.php');
+            exit;
+        }
+
+
+
+
+
         # GUARDA UTILIZADOR NA BASE DE DADOS (REPOSITÓRIO PDO)
         $utilizador = registarUtilizador($dados);
 
@@ -53,7 +68,7 @@ function registo($requisicao)
             # FAZ LOGIN DE UTILIZADOR
             $_SESSION['id'] = $utilizador['id'];
             $_SESSION['nome'] = $utilizador['nome'];
-            
+
             // 30 Dias = Data atual + 60 minutos * 60 segundos * 24 horas * 30 dias
             setcookie("id", $dados['id'], time() + (60 * 60 * 24 * 30), "/");
             setcookie("nome", $dados['nome'], time() + (60 * 60 * 24 * 30), "/");

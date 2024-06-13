@@ -15,6 +15,7 @@ require __DIR__ . '/criar-conexao.php';
 # APAGA TABELA SE ELA EXISTIR
 $pdo->exec('DROP TABLE IF EXISTS utilizadores;');
 
+
 echo 'Tabela utilizadores apagada!' . PHP_EOL;
 
 # CRIA A TABELA UTILIZADORES
@@ -33,6 +34,16 @@ $pdo->exec(
 );
 
 echo 'Tabela utilizadores criada!' . PHP_EOL;
+
+
+$pdo->exec('DROP TABLE IF EXISTS utilizadores_banidos;');
+
+# CRIAR TABELA DE UTILIZADORES BANIDOS
+$pdo->exec(
+    'CREATE TABLE utilizadores_banidos (
+    id INTEGER PRIMARY KEY, 
+    email CHAR NOT NULL);'
+);
 
 # ABAIXO UM ARRAY SIMULANDO A DADOS DE UM UTILIZADOR 
 $utilizador = [
