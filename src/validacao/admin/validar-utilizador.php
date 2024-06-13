@@ -108,6 +108,7 @@ function utilizadorValido($requisicao)
 
     # VALIDANDO O CAMPO ADMINISTRADOR
     $requisicao['administrador'] = !empty($requisicao['administrador']) == 'on' ? true : false;
+    $requisicao['banido'] = !empty($requisicao['banido']) == 'on' ? true : false;
 
 
     # RETORNA ERROS

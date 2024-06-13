@@ -55,10 +55,6 @@ function registo($requisicao)
             exit;
         }
 
-
-
-
-
         # GUARDA UTILIZADOR NA BASE DE DADOS (REPOSITÓRIO PDO)
         $utilizador = registarUtilizador($dados);
 

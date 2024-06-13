@@ -20,6 +20,12 @@ function validarLogin($reqisicao)
         $erros['palavra_passe'] = 'O campo Palavra Passe não pode estar vazio e deve ter no mínio 6 caracteres.';
     }
 
+    // Check if the user is banned
+    $utilizador = lerUtilizadorPorEmail($reqisicao['email']);
+    if ($utilizador['banido']) {
+        $erros['banido'] = 'Você foi banido do sistema. Entre em contato com um administrador.';
+    }
+
     # RETORNA ERROS
     if (isset($erros)) {
         return ['invalido' => $erros];

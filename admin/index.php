@@ -45,6 +45,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
             <th scope="col">Telemóvel</th>
             <th scope="col">Email</th>
             <th scope="col">Administrador</th>
+            <th scope="col">Banido</th>
             <th scope="col">Gerenciar</th>
           </tr>
         </thead>
@@ -60,6 +61,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
               <td><?= $utilizador['telemovel'] ?></td>
               <td><?= $utilizador['email'] ?></td>
               <td><?= $utilizador['administrador'] == '1' ? 'Sim' : 'Não' ?></td>
+              <td><?= $utilizador["banido"] == "1" ? "Sim" : "Não" ?></td>
               <td>
                 <div class="d-flex justify-content">
                   <a href="/src/controlador/admin/controlar-utilizador.php?<?= 'utilizador=atualizar&id=' . $utilizador['id'] ?>"><button type="button" class="btn btn-primary me-2">Atualizar</button></a>
@@ -78,9 +80,25 @@ require_once __DIR__ . '/templates/cabecalho.php';
                   <div class="modal-body">
                     Esta operação não poderá ser desfeita. Tem certeza que deseja deletar este utilizador?
                   </div>
+
+                  <form id="form<?= $utilizador['id'] ?>">
+                    <div class="input-group mb-3">
+                      <div class="form-check form-switch mx-3 ">
+                        <input class="form-check-input" type="checkbox" name="banir" role="switch" id="flexSwitchCheckChecked<?= $utilizador['id'] ?>" <?= isset($_REQUEST['banir']) && $_REQUEST['banir'] == true ? 'checked' : null ?>>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Banir</label>
+                      </div>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text">Motivo</span>
+                      <textarea class="form-control" id="motivo<?= $utilizador['id'] ?>" name="motivo" maxlength="255" required disabled></textarea>
+                    </div>
+                  </form>
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <a href="/src/controlador/admin/controlar-utilizador.php?<?= 'utilizador=deletar&id=' . $utilizador['id'] ?>"><button type="button" class="btn btn-danger">Confirmar</button></a>
+                    <a href="/src/controlador/admin/controlar-utilizador.php?<?= 'utilizador=deletar&id=' . $utilizador['id'] ?>" id="confirmButton<?= $utilizador['id'] ?>">
+                      <button type="button" class="btn btn-danger">Confirmar</button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -98,6 +116,9 @@ require_once __DIR__ . '/templates/cabecalho.php';
       <a href="/admin/utilizador.php" class="flex-fill mx-2">
         <button class="btn btn-success w-100">Criar Utilizador</button>
       </a>
+      <a href="/admin/utilizadores-banidos.php" class="flex-fill mx-2">
+        <button class="btn btn-danger w-100">Utilizadores Banidos</button>
+      </a>
       <a href="/aplicacao/" class="flex-fill mx-2">
         <button class="btn btn-dark w-100">Voltar</button>
       </a>
@@ -105,6 +126,29 @@ require_once __DIR__ . '/templates/cabecalho.php';
     </div>
   </section>
 </main>
+<script>
+  document.querySelectorAll("[id^='flexSwitchCheckChecked']").forEach((checkbox) => {
+    checkbox.addEventListener("change", function() {
+      let id = this.id.replace('flexSwitchCheckChecked', '');
+      document.getElementById('motivo' + this.id.replace('flexSwitchCheckChecked', '')).disabled = !this.checked;
+      updateUrl(id);
+    });
+  });
+
+  document.querySelectorAll("[id^='motivo']").forEach((textarea) => {
+    textarea.addEventListener("input", function() {
+      let id = this.id.replace('motivo', '');
+      updateUrl(id);
+    });
+  });
+
+  function updateUrl(id) {
+    let banir = document.getElementById('flexSwitchCheckChecked' + id).checked ? 'true' : 'false';
+    let motivo = document.getElementById('motivo' + id).value;
+    let url = '/src/controlador/admin/controlar-utilizador.php?utilizador=deletar&id=' + id + '&banir=' + banir + '&motivo=' + encodeURIComponent(motivo);
+    document.getElementById('confirmButton' + id).href = url;
+  }
+</script>
 <?php
 # CARREGA O RODAPE PADRÃO
 require_once __DIR__ . '/templates/rodape.php';

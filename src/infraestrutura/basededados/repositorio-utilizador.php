@@ -114,6 +114,28 @@ function lerTodosUtilizadores()
     return $utilizadores;
 }
 
+
+/**
+ * FUNÇÃO RESPONSÁVEL POR RETORNAR TODOS OS UTILIZADORES BANIDOS NA TABELA utilizadores_banidos
+ */
+function lerTodosUtilizadoresBanidos()
+{
+    # PREPARA A QUERY
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT * FROM utilizadores_banidos;');
+
+    # ININIA ARRAY DE UTILIZADORES
+    $utilizadores = [];
+
+    # PERCORRE TODAS AS LINHAS TRAZENDO OS DADOS
+    while ($listaDeUtilizadores = $PDOStatement->fetch()) {
+        $utilizadores[] = $listaDeUtilizadores;
+    }
+
+    # RETORNA UTILIZADORES
+    return $utilizadores;
+}
+
+
 /**
  * FUNÇÃO RESPONSAVEL POR ATUALIZAR OS DADOS DE UM UTILIZADOR NO SISTEMA
  */
@@ -133,6 +155,7 @@ function atualizarUtilizador($utilizador)
             email = :email, 
             foto = :foto, 
             administrador = :administrador, 
+            banido = :banido,
             palavra_passe = :palavra_passe
         WHERE id = :id;";
 
@@ -148,6 +171,7 @@ function atualizarUtilizador($utilizador)
             ':email' => $utilizador['email'],
             ':foto' => $utilizador['foto'],
             ':administrador' => $utilizador['administrador'],
+            ':banido' => $utilizador['banido'],
             ':palavra_passe' => $utilizador['palavra_passe']
         ]);
     }
@@ -161,7 +185,8 @@ function atualizarUtilizador($utilizador)
         telemovel = :telemovel, 
         email = :email, 
         foto = :foto, 
-        administrador = :administrador
+        administrador = :administrador,
+        banido = :banido
     WHERE id = :id;";
 
     # PREPARA A CONSULTA
@@ -176,6 +201,7 @@ function atualizarUtilizador($utilizador)
         ':telemovel' => $utilizador['telemovel'],
         ':email' => $utilizador['email'],
         ':foto' => $utilizador['foto'],
+        ':banido' => $utilizador['banido'],
         ':administrador' => $utilizador['administrador']
     ]);
 }
@@ -210,10 +236,12 @@ function atualizarPalavraPasse($utilizador)
 /**
  * FUNÇÃO RESPONSÁVEL POR DELETAR UM UTILIZADOR DO SISTEMA
  */
-function deletarUtilizador($id)
+function deletarUtilizador($id, $banir, $motivo)
 {
 
-    $GLOBALS['pdo']->exec("INSERT INTO utilizadores_banidos (id, email) SELECT id, email FROM utilizadores WHERE id = $id;");
+    if ($banir) {
+        $GLOBALS['pdo']->exec("INSERT INTO utilizadores_banidos (id, email, motivo) SELECT id, email, '$motivo' FROM utilizadores WHERE id = $id;");
+    }
 
     # PREPARA A CONSULTA
     $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM utilizadores WHERE id = ?;');
@@ -282,4 +310,18 @@ function verificarUtilizadorBanido($email)
 
     # RETORNA OS DADOS
     return $PDOStatement->fetch();
+}
+
+
+# FUNÇÃO PARA DESBANIR UM UTILIZADOR
+function desbanirUtilizador($id)
+{
+    # PREPARA A CONSULTA
+    $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM utilizadores_banidos WHERE id = ?;');
+
+    # REALIZA O BIND
+    $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
+
+    # EXECUTA A CONSULTA E RETORNA OS DADOS
+    return $PDOStatement->execute();
 }

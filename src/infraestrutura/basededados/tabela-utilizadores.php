@@ -30,6 +30,7 @@ $pdo->exec(
     foto CHAR NULL, 
     administrador CHAR, 
     dono CHAR,
+    banido CHAR,
     palavra_passe CHAR);'
 );
 
@@ -42,7 +43,8 @@ $pdo->exec('DROP TABLE IF EXISTS utilizadores_banidos;');
 $pdo->exec(
     'CREATE TABLE utilizadores_banidos (
     id INTEGER PRIMARY KEY, 
-    email CHAR NOT NULL);'
+    email CHAR NOT NULL,
+    motivo CHAR NOT NULL);'
 );
 
 # ABAIXO UM ARRAY SIMULANDO A DADOS DE UM UTILIZADOR 
@@ -55,6 +57,7 @@ $utilizador = [
     'foto' => null,
     'administrador' => true,
     'dono' => true,
+    'banido' => false,
     'palavra_passe' => '123123'
 ];
 
@@ -72,6 +75,7 @@ $sqlCreate = "INSERT INTO
         foto, 
         administrador, 
         dono, 
+        banido,
         palavra_passe) 
     VALUES (
         :nome, 
@@ -82,6 +86,7 @@ $sqlCreate = "INSERT INTO
         :foto, 
         :administrador, 
         :dono,
+        :banido,
         :palavra_passe
     )";
 
@@ -98,6 +103,7 @@ $sucesso = $PDOStatement->execute([
     ':foto' => $utilizador['foto'],
     ':administrador' => $utilizador['administrador'],
     ':dono' => $utilizador['dono'],
+    ':banido' => $utilizador['banido'],
     ':palavra_passe' => $utilizador['palavra_passe']
 ]);
 

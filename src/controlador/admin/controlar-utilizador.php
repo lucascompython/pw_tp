@@ -66,6 +66,24 @@ if (isset($_GET['utilizador'])) {
         header('location: /../admin/utilizador.php' . $params);
     }
 
+
+    ## CONTROLA A ROTA PARA DESBANIR UTILIZADORES
+    if ($_GET['utilizador'] == 'desbanir') {
+
+        # DESBANIR UTILIZADOR
+        $sucesso = desbanir($_GET['id']);
+
+        # REDIRECIONA UTILIZADOR PARA PÁGINA ADMIN COM MENSAGEM DE SUCCESO
+        if ($sucesso) {
+            # DEFINE MENSAGEM DE SUCESSO
+            $_SESSION['sucesso'] = 'Utilizador desbanido com sucesso!';
+
+            # REDIRECIONA UTILIZADOR COM DADOS DO FORMULÁRIO ANTERIORMENTE PREENCHIDO
+            header('location: /../admin');
+        }
+    }
+
+
     ## CONTROLA A ROTA PARA A EXCLUSÃO DE UTILIZADORES
     if ($_GET['utilizador'] == 'deletar') {
 
@@ -86,7 +104,7 @@ if (isset($_GET['utilizador'])) {
         }
 
         # DELETA UTILIZADOR
-        $sucesso = deletar($utilizador);
+        $sucesso = deletar($utilizador, $_GET['banir'], $_GET['motivo']);
 
         # REDIRECIONA UTILIZADOR PARA PÁGINA ADMIN COM MENSAGEM DE SUCCESO
         if ($sucesso) {
@@ -128,6 +146,20 @@ function criar($requisicao)
 
     # GARDA FOTO EM DIRETÓRIO LOCAL (FUNÇÃO LOCAL)
     $dados = guardaFoto($dados);
+
+    # VERIFICAR SE O UTIlizADOR JA FOI BANIDO
+
+    if (verificarUtilizadorBanido($dados["email"])) {
+        # DEFINE MENSAGEM DE ERRO
+        $_SESSION['erros'] = ['Utilizador banido. Por favor, contacte o administrador.'];
+
+        $params = '?' . http_build_query($requisicao);
+
+        # REDIRECIONA UTILIZADOR PARA PÁGINA DE LOGIN COM MENSAGEM DE ERRO
+        header('location: /../../admin/utilizador.php' . $params);
+        exit;
+    }
+
 
     # GUARDA UTILIZADOR NA BASE DE DADOS (REPOSITÓRIO PDO)
     $sucesso = criarUtilizador($dados);
@@ -177,6 +209,18 @@ function atualizar($requisicao)
 
         # DEFINE MENSAGEM ESPECÍFICA DE ERRO E RETORNO PARA PAINEL DE ADM
         $_SESSION['erros'] = ['Este utilizador é proprietário do sistema e não pode deixar de ser administrador.'];
+
+        # REDIRECIONA UTILIZADOR COM DADOS DO FORMULÁRIO ANTERIORMENTE PREENCHIDO
+        header('location: /../admin');
+
+        return false;
+    }
+
+    # VALIDAÇÃO PARA NÃO PERMITIR BANIR UTILIZADOR SE ELE FOR O DONO DO SISTEMA
+    if ($utilizador['dono'] && $dados['banido']) {
+
+        # DEFINE MENSAGEM ESPECÍFICA DE ERRO E RETORNO PARA PAINEL DE ADM
+        $_SESSION['erros'] = ['Este utilizador é proprietário do sistema e não pode ser banido.'];
 
         # REDIRECIONA UTILIZADOR COM DADOS DO FORMULÁRIO ANTERIORMENTE PREENCHIDO
         header('location: /../admin');
@@ -302,16 +346,31 @@ function alterarPalavraPasse($requisicao)
     }
 }
 
+
+/**
+ * FUNÇÃO RESPONSÁVEL POR DESBANIR UM UTILIZADOR
+ */
+
+function desbanir($id)
+{
+    # DESBANIR UTILIZADOR
+    $sucesso = desbanirUtilizador($id);
+
+    # RETORNA RESULTADO DO BANCO DE DADOS
+    return $sucesso;
+}
+
+
 /**
  * FUNÇÃO RESPONSÁVEL POR DELETAR UM UTILIZADOR
  */
-function deletar($utilizador)
+function deletar($utilizador, $banir, $motivo)
 {
     # DEFINE O CAMINHO DO FICHEIRO
     $caminhoFicheiro = __DIR__ . '/../../../recursos/imagens/uploads/';
 
     # VALIDA DADOS DO UTILIZADOR
-    $retorno = deletarUtilizador($utilizador['id']);
+    $retorno = deletarUtilizador($utilizador['id'], $banir, $motivo);
 
     # COMANDO PARA APAGAR O FICHEIRO
     unlink($caminhoFicheiro . $utilizador['foto']);
