@@ -1,5 +1,30 @@
 <?php
 
+
+
+
+function validateNIF($nif)
+{
+    $nif = trim($nif);
+    $nif_split = str_split($nif);
+    $nif_primeiros_digito = array(1, 2, 3, 5, 6, 7, 8, 9);
+    if (is_numeric($nif) && strlen($nif) == 9 && in_array($nif_split[0], $nif_primeiros_digito)) {
+        $check_digit = 0;
+        for ($i = 0; $i < 8; $i++) {
+            $check_digit += $nif_split[$i] * (10 - $i - 1);
+        }
+        $check_digit = 11 - ($check_digit % 11);
+        $check_digit = $check_digit >= 10 ? 0 : $check_digit;
+        if ($check_digit == $nif_split[8]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
 /**
  * FUNÇÃO RESPONSÁVEL PELA VALIDAÇÃO DE UM UTILIZADOR
  */
@@ -21,8 +46,8 @@ function utilizadorValido($requisicao)
     }
 
     # VALIDANDO O CAMPO NIF
-    if (!filter_var($requisicao['nif'], FILTER_VALIDATE_INT) || strlen($requisicao['nif']) != 9) {
-        $erros['nif'] = 'O campo NIF não pode estar vazio e deve ter 9 números.';
+    if (!filter_var($requisicao['nif'], FILTER_VALIDATE_INT) || !validateNIF($requisicao['nif'])) {
+        $erros['nif'] = 'O campo NIF não pode estar vazio e tem que ser válido.';
     }
 
     # VALIDANDO O CAMPO TELEMÓVEL
