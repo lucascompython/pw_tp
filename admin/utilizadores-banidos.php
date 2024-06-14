@@ -68,8 +68,14 @@ $titulo = ' - Utilizadores Banidos';
                 }
                 ?>
             </section>
+
+            <section class="container">
+                <input type="text" id="filterInput" class="form-control" placeholder="Filtrar por email" name="email" aria-label="Filtrar por email" aria-describedby="filter-button">
+            </section>
+
+
             <section>
-                <div class="table-responsive mt-5">
+                <div class="table-responsive mt-3">
                     <table class="table">
                         <thead class="table-secondary">
                             <tr>
@@ -84,7 +90,7 @@ $titulo = ' - Utilizadores Banidos';
                             foreach ($utilizadoresBanidos as $utilizador) {
                             ?>
                                 <tr>
-                                    <td><?= $utilizador['email'] ?></td>
+                                    <td id="email<?= $utilizador['id'] ?>"><?= $utilizador['email'] ?></td>
                                     <td><?= $utilizador['motivo'] ?></td>
                                     <td>
                                         <div class="d-flex justify-content">
@@ -131,6 +137,26 @@ $titulo = ' - Utilizadores Banidos';
                 </div>
             </section>
         </main>
+
+        <script>
+            const filterInput = document.getElementById('filterInput');
+
+            const rows = document.querySelectorAll('tbody tr');
+            const emails = document.querySelectorAll('tbody td[id^="email"]');
+
+            filterInput.addEventListener("input", () => {
+                const filter = filterInput.value.toLowerCase();
+                rows.forEach((row, index) => {
+                    if (emails[index].innerText.toLowerCase().includes(filter)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+
+
         <?php
         # CARREGA O RODAPE PADRÃO
         require_once __DIR__ . '/templates/rodape.php';

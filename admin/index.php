@@ -34,8 +34,13 @@ require_once __DIR__ . '/templates/cabecalho.php';
     }
     ?>
   </section>
+
+  <section class="container">
+    <input type="text" id="filterInput" class="form-control" placeholder="Filtrar por email" name="email" aria-label="Filtrar por email" aria-describedby="filter-button">
+  </section>
+
   <section>
-    <div class="table-responsive mt-5">
+    <div class="table-responsive mt-3">
       <table class="table">
         <thead class="table-secondary">
           <tr>
@@ -59,7 +64,7 @@ require_once __DIR__ . '/templates/cabecalho.php';
               <td><?= $utilizador['apelido'] ?></td>
               <td><?= $utilizador['nif'] ?></td>
               <td><?= $utilizador['telemovel'] ?></td>
-              <td><?= $utilizador['email'] ?></td>
+              <td id="email<?= $utilizador['id'] ?>"><?= $utilizador['email'] ?></td>
               <td><?= $utilizador['administrador'] == '1' ? 'Sim' : 'Não' ?></td>
               <td><?= $utilizador["banido"] == "1" ? "Sim" : "Não" ?></td>
               <td>
@@ -148,6 +153,23 @@ require_once __DIR__ . '/templates/cabecalho.php';
     let url = '/src/controlador/admin/controlar-utilizador.php?utilizador=deletar&id=' + id + '&banir=' + banir + '&motivo=' + encodeURIComponent(motivo);
     document.getElementById('confirmButton' + id).href = url;
   }
+
+
+  const filterInput = document.getElementById('filterInput');
+
+  const rows = document.querySelectorAll('tbody tr');
+  const emails = document.querySelectorAll('tbody td[id^="email"]');
+
+  filterInput.addEventListener("input", () => {
+    const filter = filterInput.value.toLowerCase();
+    rows.forEach((row, index) => {
+      if (emails[index].innerText.toLowerCase().includes(filter)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
 </script>
 <?php
 # CARREGA O RODAPE PADRÃO
